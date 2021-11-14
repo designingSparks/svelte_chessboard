@@ -1,0 +1,1 @@
+This is a simple demo for integrating chessboard.js into a svelte app

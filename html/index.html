@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="../css/chessboard.css">
+        <link rel="stylesheet" href="../css/bulma.css">
+        <!-- <link rel="stylesheet" href="../css/main.css"> -->
+        <!-- <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script> -->
+        <script type="text/javascript" src="../js/qwebchannel.js"></script>
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script type="text/javascript" src="../js/chessboard.js"></script>
+        <script type="text/javascript" src="../js/chess.js"></script>
+
+        <!-- Main container -->
+        <div class="level">
+            <!-- Left side -->
+            <!-- <div class="level-left"> -->
+            <div class="level-item">
+                <div id="board1" style="width: 600px"></div>
+            </div>
+            <!-- </div> -->
+  
+            <!-- Right side -->
+            <div style="height: 600px">
+                <div class="container">
+                    <!-- <div class="notification is-primary">
+                      This container is <strong>centered</strong> on desktop and larger viewports.
+                    </div> -->
+                    <table class="table" id="myTable">
+                        <thead>
+                          <tr>
+                            <th>Move</th>
+                            <th>White</th>
+                            <th>Black</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              <th>1</th>
+                              <td>e4-e6</td>
+                              <td>d7-d5</td>
+                            </tr>
+                            <tr>
+                              <th>2</th>
+                              <td>e4-e6</td>
+                              <td>d7-d5</td>
+                            </tr>
+                            <tr>
+                              <th>3</th>
+                              <td>e4-e6</td>
+                              <td>h7-h6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div id="dialog" title="Basic dialog">
+          <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+          <input class="myInput" type="text" />
+          <button class="formSaver">Save me!</button>
+      </div>
+      
+      <button id="opener">Open Dialog</button>
+
+       
+    </head>
+</html>
