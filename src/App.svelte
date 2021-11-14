@@ -1,8 +1,10 @@
 <script>
 	export let name; //prop
 	import { onMount } from 'svelte';
-	let board;
+	var board;
 	let el;
+	var game;
+	
 
 	onMount(() => {
 		console.log('Mounted');
@@ -16,6 +18,10 @@
   		onDrop: onDrop,
   		sparePieces: true});
 	}
+	
+	function initGame() {
+		game = Chess(); //chess.js
+	}
 
 	function onDrop (source, target, piece, newPos, oldPos, orientation) {
 		console.log('Source: ' + source)
@@ -25,6 +31,14 @@
 		console.log('Old position: ' + Chessboard.objToFen(oldPos))
 		console.log('Orientation: ' + orientation)
 		console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
+		// see if the move is legal
+		var move = game.move({
+			from: source,
+			to: target,
+			promotion: 'q' // NOTE: always promote to a queen for example simplicity
+		})
+		if (move === null) return 'snapback'
 	}
 </script>
 
@@ -32,6 +46,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.js" on:load={initBoard}> </script>
+	<script src="chess.js" on:load={initGame}></script>
 </svelte:head>
 
 <main>
