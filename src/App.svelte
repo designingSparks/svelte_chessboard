@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Game } from './game'; //imported after the external modules in svelte head
-	// import jQuery from '../js/jquery';
+	import jQuery from '../js/jquery';
 	// import Chess from '../js/chess';
 	// import Chessboard from '../js/chessboard';
 
@@ -12,7 +12,7 @@
 
 	onMount(() => {
 		console.log('Mounted');
-		
+		window.jQuery = jQuery
 		console.log('Created board');
 	});
 
@@ -50,7 +50,7 @@
 </script>
 
 <svelte:head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"/>
 	<!-- <script src="chess.js" on:load={initGame}></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.js" on:load={initBoard}> </script>
