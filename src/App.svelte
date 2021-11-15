@@ -3,7 +3,8 @@
 	import { Game } from './game'; //imported after the external modules in svelte head
 	import jQuery from '../js/jquery';
 	import Chess from '../js/chess';
-	import Chessboard from '../js/chessboard';
+	// import Chessboard from '../js/chessboard';
+	import {chessboard} from './loader'
 
 	export let name; //prop
 	var board;
@@ -12,12 +13,15 @@
 
 	onMount(() => {
 		console.log('Mounted');
-		board = Chessboard(el, {
-			draggable: true,
-			position: 'start',
-			// onDrop: game.sayName, //game is not initialized yet!
-			sparePieces: true
-		});
+		window.chessboard = chessboard;
+		window.jQuery = jQuery;
+		board = chessboard(el, 'start');
+		// board = Chessboard(el, {
+		// 	draggable: true,
+		// 	position: 'start',
+		// 	// onDrop: game.sayName, //game is not initialized yet!
+		// 	sparePieces: true
+		// });
 		console.log('Created board');
 	});
 

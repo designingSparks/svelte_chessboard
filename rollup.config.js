@@ -35,7 +35,7 @@ export default {
 		format: 'iife',
 		name: 'app',
 		file: 'public/build/bundle.js',
-		// external: ['jquery'],
+		external: ['jquery'],
 		// globals: {
 		// 	'jQuery': 'jquery',
 		// 	'Chess': 'chess'
