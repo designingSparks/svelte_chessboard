@@ -6,7 +6,7 @@
 // https://github.com/oakmac/chessboardjs/blob/master/LICENSE.md
 
 // start anonymous scope
-;(function () {
+var Chessboard = function () {
   'use strict'
 
   var $ = window['jQuery']
@@ -1814,4 +1814,7 @@
   // expose util functions
   window['Chessboard']['fenToObj'] = fenToObj
   window['Chessboard']['objToFen'] = objToFen
-})() // end anonymous wrapper
+} // end anonymous wrapper
+
+
+export default Chessboard

@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import { Game } from './game'; //imported after the external modules in svelte head
 	import jQuery from '../js/jquery';
-	import {Chess} from '../js/chess';
-	import {Chessboard} from '../js/chessboard';
+	import Chess from '../js/chess';
+	import Chessboard from '../js/chessboard';
 
 	export let name; //prop
 	var board;
@@ -12,35 +12,42 @@
 
 	onMount(() => {
 		console.log('Mounted');
-	});
-
-	function initBoard() {
-		console.log('Initializing board');
 		board = Chessboard(el, {
 			draggable: true,
-  		position: 'start',
-  		// onDrop: game.sayName, //game is not initialized yet!
-  		sparePieces: true});
-	}
+			position: 'start',
+			// onDrop: game.sayName, //game is not initialized yet!
+			sparePieces: true
+		});
+		console.log('Created board');
+	});
+
+	// function initBoard() {
+	// 	console.log('Initializing board');
+	// 	board = Chessboard(el, {
+	// 		draggable: true,
+  	// 	position: 'start',
+  	// 	// onDrop: game.sayName, //game is not initialized yet!
+  	// 	sparePieces: true});
+	// }
 	
-	function initGame() {
-		console.log('Initializing game');
-		let chess = Chess(); //chess.js
-		game = new Game(2,3,chess);
-		// board.onDrop = game.onDrop;
-	}
+	// function initGame() {
+	// 	console.log('Initializing game');
+	// 	let chess = Chess(); //chess.js
+	// 	game = new Game(2,3,chess);
+	// 	// board.onDrop = game.onDrop;
+	// }
 
 
-	function onDragStart (source, piece, position, orientation) {
-		// do not pick up pieces if the game is over
-		if (game.game_over()) return false
+	// function onDragStart (source, piece, position, orientation) {
+	// 	// do not pick up pieces if the game is over
+	// 	if (game.game_over()) return false
 
-		// only pick up pieces for the side to move
-		if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-			(game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-			return false
-		}
-	}
+	// 	// only pick up pieces for the side to move
+	// 	if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+	// 		(game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+	// 		return false
+	// 	}
+	// }
 
 	
 
