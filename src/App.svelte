@@ -1,10 +1,10 @@
 <script>
 	export let name; //prop
 	import { onMount } from 'svelte';
+	import { Game } from './game'; //imported after the external modules in svelte head
 	var board;
 	let el;
 	var game;
-	
 
 	onMount(() => {
 		console.log('Mounted');
@@ -15,38 +15,38 @@
 		board = Chessboard(el, {
 			draggable: true,
   		position: 'start',
-  		onDrop: onDrop,
+  		// onDrop: game.sayName, //game is not initialized yet!
   		sparePieces: true});
 	}
 	
 	function initGame() {
-		game = Chess(); //chess.js
+		console.log('Initializing game');
+		let chess = Chess(); //chess.js
+		game = new Game(2,3,chess);
+		// board.onDrop = game.onDrop;
 	}
 
-	function onDrop (source, target, piece, newPos, oldPos, orientation) {
-		console.log('Source: ' + source)
-		console.log('Target: ' + target)
-		console.log('Piece: ' + piece)
-		console.log('New position: ' + Chessboard.objToFen(newPos))
-		console.log('Old position: ' + Chessboard.objToFen(oldPos))
-		console.log('Orientation: ' + orientation)
-		console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
-		// see if the move is legal
-		var move = game.move({
-			from: source,
-			to: target,
-			promotion: 'q' // NOTE: always promote to a queen for example simplicity
-		})
-		if (move === null) return 'snapback'
+	function onDragStart (source, piece, position, orientation) {
+		// do not pick up pieces if the game is over
+		if (game.game_over()) return false
+
+		// only pick up pieces for the side to move
+		if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+			(game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+			return false
+		}
 	}
+
+	
+
 </script>
 
 <svelte:head>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.js" on:load={initBoard}> </script>
 	<script src="chess.js" on:load={initGame}></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.js" on:load={initBoard}> </script>
 </svelte:head>
 
 <main>
